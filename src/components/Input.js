@@ -1,19 +1,17 @@
-import React, { useState } from "react";
-import "../styles/Input.css"
+import React from "react";
+import { useForm } from "react-hook-form";
+import "../styles/Input.css";
 
 const Input = () => {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => console.log(data);
+
   return (
     <div className="top-container">
-      <input
-        id="first-name"
-        class="form-input"
-        type="text"
-        placeholder="Tree(3, [Tree(2, [Tree(5)]), Tree(4)])"
-        name="tree"
-      />
-      <button class="form-enter" type="submit">
-          Enter
-      </button>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input {...register("tree", { pattern: /^[A-Za-z]+$/i })} />
+        <input type="submit" />
+      </form>
     </div>
   );
 };

@@ -13,10 +13,3 @@ class Tree {
     return this.label;
   }
 }
-
-var t = new Tree(3, [new Tree(2, [new Tree(5)]), new Tree(4)]);
-console.log(t.label);
-console.log(t.branches[0].label);
-console.log(t.branches[1].is_leaf());
-
-// export default Tree;
