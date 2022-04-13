@@ -9,7 +9,7 @@ function App() {
         <Input />;
       </div>
       <div>
-        <DisplayTree t="Tree(3, [Tree(2, [Tree(5)]), Tree(4)])" />
+        <DisplayTree t="new Tree(3, [new Tree(2, [new Tree(5)]), new Tree(4)])" />
       </div>
     </>
   );
