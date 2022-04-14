@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div>
-        <Input />;
+        <Input />
       </div>
       <div>
         <DisplayTree t="new Tree(3, [new Tree(2, [new Tree(5)]), new Tree(4)])" />
