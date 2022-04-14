@@ -13,6 +13,14 @@ const DisplayTree = (tree) => {
   console.log(numDepth);
   return (
     <div className="display-tree">
+      <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "500px",
+        position: "absolute",
+      }}
+    ></div>
       {indexedTree.map((node) => (
         <Node
           key={node[3]}
