@@ -82,7 +82,7 @@ function make(t, layer, parent) {
 function hasher(num) {
   let str = "";
   if (setLabel.has(num)) {
-    str = num.toString() + "0" * counter;
+    str = num.toString() + "0".repeat(counter);
     counter += 1;
   } else {
     setLabel.add(num);
