@@ -1,16 +1,14 @@
-#dot {
+.dot {
     text-align:center;
-    height: 25px;
-    width: 25px;
-    background-color: #bbb;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
-    display: inline-grid;
+    z-index: 3;
   }
 
-.line {
-  padding: 0px;
-  margin: 0px;
-  background-color: rgb(0, 0, 0);
-  line-height:1px; 
-  position:absolute;
+.label {
+  margin:0;
+  margin-top:50%;
+  transform: translateY(-50%);
+  font-size: 20px;
 }

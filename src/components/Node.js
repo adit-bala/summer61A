@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
+import React from "react";
 import Xarrow from "react-xarrows";
 import "../styles/Node.css";
-import LineTo from "./LineTo";
 
 const boxStyle = {
   border: "1px #999 solid",
@@ -15,32 +14,42 @@ const boxStyle = {
   justifyContent: "center",
 };
 
-const Node = ({ label, depth, parent, map, uid, num }) => {
+const Node = ({ label, depth, parent, map, uid, num, highlight }) => {
   const middle = Math.round((map.get(depth) - 1) / 2);
   let offset = num - middle;
-
-  console.log(`dot ${label}`, `dot ${parent}`);
+  let color = "#bbb";
+  if (highlight) {
+    color = "#00FF00";
+  }
   return (
     <>
       <div
+        className="dot"
         id={`dot ${label}`}
         style={{
           boxStyle,
           position: "relative",
-          left: `${offset * 120}px`,
+          left: `${offset * 100}px`,
           top: `${depth * 100}px`,
           bottom: `100px`,
+          backgroundColor: `${color}`,
         }}
       >
-        {label}{" "}
+        <p className="label">{label}</p>
       </div>
-      <Xarrow
-        start={`dot ${label}`}
-        end={`dot ${parent}`}
-        path={'grid'}
-        showHead={false}
-      />
-      {/* <LineTo from={`dot ${label}`} to={`dot ${parent}`} thickness={5} /> */}
+      {parent != null && (
+        <Xarrow
+          start={`dot ${label}`}
+          end={`dot ${parent}`}
+          endAnchor="bottom"
+          startAnchor="top"
+          path={"smooth"}
+          lineColor="black"
+          strokeWidth={2}
+          showHead={false}
+          zIndex={1}
+        />
+      )}
     </>
   );
 };
