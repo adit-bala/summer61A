@@ -7,17 +7,21 @@ const Input = () => {
   const [tree, setTree] = useState("");
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const { register, getValues } = useForm({});
   return (
     <div className="top-container">
       <form>
         <input
-          defaultValue="new Tree(6, [
-            new Tree(1, [new Tree(11), new Tree(2), new Tree(3)]),
-            new Tree(10, [new Tree(7), new Tree(9), new Tree(8)]),
-            new Tree(5, [new Tree(0), new Tree(4)]),
+          defaultValue="Tree(6, [
+            Tree(1, [Tree(11), Tree(2), Tree(3)]),
+            Tree(10, [Tree(7), Tree(11), Tree(8)]),
+            Tree(5, [Tree(0), Tree(4)]),
           ])"
-          {...register("tree", { required: true, pattern: /^[A-Za-z]+$/i })}
+          {...register("tree", {
+            required: true,
+            pattern: /^Tree\s*\(\s*[0-9]\s*\,\s*(\[.*\])?\s*\)/i,
+          })}
         />
         <input
           defaultValue="11"
@@ -26,7 +30,7 @@ const Input = () => {
         <button
           type="button"
           onClick={() => {
-            const trees = getValues("tree");
+            const trees = insertNew(getValues("tree"));
             const values = getValues("value");
             setTree(trees);
             setCount(parseInt(values));
@@ -43,11 +47,17 @@ const Input = () => {
             <DisplayTree tree={tree} goal={count} />
           </div>
         ) : (
-          <div></div>
+          <div>
+            <p></p>
+          </div>
         )}
       </div>
     </div>
   );
 };
+
+function insertNew(treeString) {
+  return treeString.replaceAll("Tree", "new Tree");
+}
 
 export default Input;

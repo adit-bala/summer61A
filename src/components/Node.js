@@ -25,7 +25,7 @@ const Node = ({ label, depth, parent, map, uid, num, highlight }) => {
     <>
       <div
         className="dot"
-        id={`dot ${label}`}
+        id={`dot ${uid}`}
         style={{
           boxStyle,
           position: "relative",
@@ -39,7 +39,7 @@ const Node = ({ label, depth, parent, map, uid, num, highlight }) => {
       </div>
       {parent != null && (
         <Xarrow
-          start={`dot ${label}`}
+          start={`dot ${uid}`}
           end={`dot ${parent}`}
           endAnchor="bottom"
           startAnchor="top"

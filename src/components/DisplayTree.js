@@ -6,7 +6,9 @@ let hNodes = [];
 
 const DisplayTree = ({ tree, goal }) => {
   let userTree = eval(tree);
-  hNodes = traverseTrees(userTree, goal);
+  hNodes = findPaths(userTree, goal);
+  const nodes = findPaths(userTree, goal);
+  console.log(nodes);
   const indexedTree = make(userTree, 0, null, 0).slice(0, userTree.length);
   return (
     <div className="display-tree">
@@ -39,33 +41,28 @@ function Tree(label, branches = []) {
   this.branches = branches;
 }
 
-function traverseTrees(tree, goal) {
-  let arr = [];
-  if (hasPath(tree, arr, goal)) {
-    return arr;
-  }
-}
+function findPaths(tree, label) {
+  let result = [];
 
-function hasPath(tree, arr, goal) {
-  if (tree == null) {
-    return false;
+  if (tree.label === label) {
+    result.push(tree.label);
   }
-  arr.push(tree.label);
-  if (tree.label === goal) return true;
   for (let branch of tree.branches) {
-    if (hasPath(branch, arr, goal)) {
-      return true;
+    for (let lst of findPaths(branch, label)) {
+      result.push(tree.label);
+      result.push(lst);
     }
   }
-  arr.pop();
-  return false;
+  return result;
 }
-
-let uid = 0;
 const nodes = [];
 const numDepth = new Map();
 let num = 0;
+let counter = 1;
+const setLabel = new Set();
 function make(t, layer, parent) {
+  console.log(t.label, parent);
+  let labelHash = hasher(t.label);
   if (numDepth.has(layer)) {
     numDepth.set(layer, numDepth.get(layer) + 1);
     num = numDepth.get(layer);
@@ -74,13 +71,30 @@ function make(t, layer, parent) {
     num = numDepth.get(layer);
   }
   if (hNodes.includes(t.label)) {
-    nodes.push([t.label, layer, parent, uid, num, true]);
+    nodes.push([t.label, layer, parent, labelHash, num, true]);
   } else {
-    nodes.push([t.label, layer, parent, uid, num, false]);
+    nodes.push([t.label, layer, parent, labelHash, num, false]);
   }
-  uid += 1;
-  t.branches.forEach((branch) => make(branch, layer + 1, t.label));
+  t.branches.forEach((branch) => make(branch, layer + 1, labelHash));
   return nodes;
+}
+
+function hasher(num) {
+  let str = "";
+  if (setLabel.has(num)) {
+    str = num.toString() + "0" * counter;
+    counter += 1;
+  } else {
+    setLabel.add(num);
+    str = num.toString();
+  }
+  var hash = 0;
+  for (var i = 0; i < str.length; i++) {
+    var char = str.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return hash;
 }
 
 export default DisplayTree;
