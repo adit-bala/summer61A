@@ -14,13 +14,24 @@ const DisplayTree = ({ tree, goal }) => {
   const indexedTree = make(userTree, 0, null, 0).slice(0, userTree.length);
   return (
     <>
-      <div>
-        path_to_{goal} = path_yielder({tree}, {goal})
+      <div className="center background">
+        <div id="code-block">
+          <pre>
+            <blockquote>
+              <code>
+                path_to_{goal} = path_yielder({tree}, {goal})
+              </code>
+            </blockquote>
+            <blockquote>
+              <code>
+                next(path_to_{goal}) = {JSON.stringify(hNodes[0])} OR
+                list(path_to_
+                {goal}) = {JSON.stringify(hNodes)}
+              </code>
+            </blockquote>
+          </pre>
+        </div>
       </div>
-      <div>
-        next(path_to_{goal}) = {JSON.stringify(hNodes[0])} OR list(path_to_{goal}) = {JSON.stringify(hNodes)}
-      </div>
-
       <div className="display-tree">
         <div
           style={{
@@ -43,6 +54,11 @@ const DisplayTree = ({ tree, goal }) => {
           ></Node>
         ))}
       </div>
+      {/* <div className="center">
+        <button type="button" onClick={window.location.reload()}>
+          Get Values
+        </button>
+      </div> */}
     </>
   );
 };

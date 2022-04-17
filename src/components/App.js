@@ -8,20 +8,18 @@ function App() {
   const [goal, setGoal] = useState(0);
   const [loading, setLoading] = useState(false);
   return (
-    <>
+    <div>
       <div>
         <Input setTree={setTree} setGoal={setGoal} setLoading={setLoading} />
       </div>
       {loading ? (
-          <div>
-            <DisplayTree tree={tree} goal={goal} />
-          </div>
-        ) : (
-          <div>
-            <p></p>
-          </div>
-        )}
-    </>
+        <div>
+          <DisplayTree tree={tree} goal={goal} />
+        </div>
+      ) : (
+        <div className="background"></div>
+      )}
+    </div>  
   );
 }
 

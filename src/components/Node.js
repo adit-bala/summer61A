@@ -19,7 +19,7 @@ const Node = ({ label, depth, parent, map, uid, num, highlight }) => {
   let offset = num - middle;
   let color = "#bbb";
   if (highlight) {
-    color = "#00FF00";
+    color = "#61B329";
   }
   return (
     <>

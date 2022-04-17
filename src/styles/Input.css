@@ -1,18 +1,46 @@
 .top-container {
-    height: 25vh;
-    background: rgba(255,0,0,1);
-    
+    height: 35vh;
+    background: bisque;
+    padding: 15px;   
 }
 
 .instructions {
-    float: left;
+  font-family: inherit;
+  font-size: 16px;
+} 
 
+.center {
+    justify-content: center;
+    width: 100%;
+    display: flex;
 }
 
-/* .form {
-    position: absolute;
-    left: 50%;
-} */
+.background {
+    background-color: bisque;
+}
+
+
+input {
+  padding: 10px;
+  margin:10px 0;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  border-radius:10px;
+  width:75%;  
+  font-family:inherit;
+  font-size: inherit;
+}
+
+button {
+  appearance:none;
+  -webkit-appearance:none;
+  padding:10px;
+  border:none;
+  background-color:#000000;
+  color:#fff;
+  font-weight:600;
+  border-radius:5px;
+  width:10%;
+}
 
 #Title {
     font-size: 32px;
