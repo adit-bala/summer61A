@@ -1,4 +1,4 @@
-# summer61A
+# Yield_Paths Visualizer
 Interview prep LOL
 
 ## To Deploy Locally
