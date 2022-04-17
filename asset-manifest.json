@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/yield_paths-visualizer/static/css/main.b2c985d7.css",
+    "main.js": "/yield_paths-visualizer/static/js/main.ac0f64f9.js",
+    "static/js/787.0973160b.chunk.js": "/yield_paths-visualizer/static/js/787.0973160b.chunk.js",
+    "index.html": "/yield_paths-visualizer/index.html",
+    "main.b2c985d7.css.map": "/yield_paths-visualizer/static/css/main.b2c985d7.css.map",
+    "main.ac0f64f9.js.map": "/yield_paths-visualizer/static/js/main.ac0f64f9.js.map",
+    "787.0973160b.chunk.js.map": "/yield_paths-visualizer/static/js/787.0973160b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b2c985d7.css",
+    "static/js/main.ac0f64f9.js"
+  ]
+}
