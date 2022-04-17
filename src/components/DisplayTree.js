@@ -2,37 +2,48 @@ import React, { useState, useEffect } from "react";
 import Node from "./Node";
 import "../styles/DisplayTree.css";
 
-let hNodes = [];
+let flattenedhNodes,
+  hNodes = [];
 
 const DisplayTree = ({ tree, goal }) => {
   let userTree = eval(tree);
   hNodes = findPaths(userTree, goal);
-  const nodes = findPaths(userTree, goal);
-  console.log(nodes);
+  console.log(JSON.stringify(hNodes));
+  flattenedhNodes = hNodes.flat();
+  console.log(hNodes.toString());
   const indexedTree = make(userTree, 0, null, 0).slice(0, userTree.length);
   return (
-    <div className="display-tree">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "500px",
-          position: "absolute",
-        }}
-      ></div>
-      {indexedTree.map((node) => (
-        <Node
-          key={node[3]}
-          label={node[0]}
-          depth={node[1]}
-          parent={node[2]}
-          uid={node[3]}
-          map={numDepth}
-          num={node[4]}
-          highlight={node[5]}
-        ></Node>
-      ))}
-    </div>
+    <>
+      <div>
+        path_to_{goal} = path_yielder({tree}, {goal})
+      </div>
+      <div>
+        next(path_to_{goal}) = {JSON.stringify(hNodes[0])} OR list(path_to_{goal}) = {JSON.stringify(hNodes)}
+      </div>
+
+      <div className="display-tree">
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "500px",
+            position: "absolute",
+          }}
+        ></div>
+        {indexedTree.map((node) => (
+          <Node
+            key={node[3]}
+            label={node[0]}
+            depth={node[1]}
+            parent={node[2]}
+            uid={node[3]}
+            map={numDepth}
+            num={node[4]}
+            highlight={node[5]}
+          ></Node>
+        ))}
+      </div>
+    </>
   );
 };
 
@@ -49,8 +60,7 @@ function findPaths(tree, label) {
   }
   for (let branch of tree.branches) {
     for (let lst of findPaths(branch, label)) {
-      result.push(tree.label);
-      result.push(lst);
+      result.push([tree.label].concat(lst));
     }
   }
   return result;
@@ -61,7 +71,6 @@ let num = 0;
 let counter = 1;
 const setLabel = new Set();
 function make(t, layer, parent) {
-  console.log(t.label, parent);
   let labelHash = hasher(t.label);
   if (numDepth.has(layer)) {
     numDepth.set(layer, numDepth.get(layer) + 1);
@@ -70,7 +79,7 @@ function make(t, layer, parent) {
     numDepth.set(layer, 0);
     num = numDepth.get(layer);
   }
-  if (hNodes.includes(t.label)) {
+  if (flattenedhNodes.includes(t.label)) {
     nodes.push([t.label, layer, parent, labelHash, num, true]);
   } else {
     nodes.push([t.label, layer, parent, labelHash, num, false]);

@@ -1,12 +1,21 @@
 .top-container {
     height: 25vh;
     background: rgba(255,0,0,1);
-}
-
-.form-input {
     
 }
 
-.form-enter {
+.instructions {
+    float: left;
 
+}
+
+/* .form {
+    position: absolute;
+    left: 50%;
+} */
+
+#Title {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
 }
