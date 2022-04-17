@@ -3,10 +3,15 @@ import Node from "./Node";
 import "../styles/DisplayTree.css";
 
 let flattenedhNodes,
-  hNodes = [];
+  hNodes,
+  userTree = [];
 
 const DisplayTree = ({ tree, goal }) => {
-  let userTree = eval(tree);
+  try {
+    userTree = eval(tree);
+  } catch (error) {
+    window.location.reload();
+  }
   hNodes = findPaths(userTree, goal);
   console.log(JSON.stringify(hNodes));
   flattenedhNodes = hNodes.flat();
@@ -62,6 +67,8 @@ const DisplayTree = ({ tree, goal }) => {
     </>
   );
 };
+
+function validateTree(Tree) {}
 
 function Tree(label, branches = []) {
   this.label = label;

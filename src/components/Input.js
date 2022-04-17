@@ -10,22 +10,28 @@ const Input = ({ setTree, setGoal, setLoading }) => {
       <div id="Title">Yield_Paths Visualizer</div>
 
       <form>
-        <div className="instructions">Enter Tree:</div>
-        <div className="center">
-          <input
-            defaultValue="Tree(1, [Tree(2, [Tree(3), Tree(4, [Tree(6)]), Tree(5)]), Tree(5)])"
-            {...register("tree", {
-              required: true,
-              pattern: /^Tree\s*\(\s*[0-9]\s*\,\s*(\[.*\])?\s*\)/i,
-            })}
-          />
+        <div className="combine">
+          <div className="instructions">Enter Tree:</div>
+          <div className="center">
+            <input
+              defaultValue="Tree(1, [Tree(2, [Tree(3), Tree(4, [Tree(6)]), Tree(5)]), Tree(5)])"
+              {...register("tree", {
+                required: true,
+                pattern: /^Tree\s*\(\s*[0-9]\s*\,\s*(\[.*\])?\s*\)/i,
+              })}
+            />
+          </div>
         </div>
-        <div className="instructions">Enter Value:</div>
-        <div className="center">
-          <input
-            defaultValue="5"
-            {...register("value", { required: true, pattern: /^[0-9]+$/i })}
-          />
+        <div>
+          <div className="combine">
+            <div className="instructions">Enter Value:</div>
+            <div className="center">
+              <input
+                defaultValue="5"
+                {...register("value", { required: true, pattern: /^[0-9]+$/i })}
+              />
+            </div>
+          </div>
         </div>
         <div className="center">
           <button
