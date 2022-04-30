@@ -1,5 +1,5 @@
 # Yield_Paths Visualizer
-Interview prep LOL
+Interview prep [LOL](https://inst.eecs.berkeley.edu/~cs61a/su20/hw/hw06/#q6)
 
 ## To Deploy Locally
 
